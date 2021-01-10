@@ -1,0 +1,28 @@
+body{
+    background-color: #131313;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.imgContainer{
+    display: block;
+}
+.leftImg{
+    display: block;
+    width: 33.33%;
+}
+.middleImg{
+    display: block;
+    width: 33.33%;
+}
+.rightImg{
+    display: block;
+    width: 33.33%;
+}
+p{
+    color: white;
+    font-size: large;
+    text-align: center;
+}
