@@ -8,21 +8,43 @@ body{
 
 .imgContainer{
     display: block;
+    text-align: justify;
+    margin-top: 4%;
+
 }
 .leftImg{
-    display: block;
-    width: 33.33%;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-left: 11%;
 }
 .middleImg{
-    display: block;
-    width: 33.33%;
+    display: inline-block;
+    width: 100px;
+    height: 100px;;
 }
 .rightImg{
-    display: block;
-    width: 33.33%;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-right: 14%;
+}
+.imgContainer:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+
+   
 }
 p{
     color: white;
     font-size: large;
     text-align: center;
+}
+footer{
+    margin-left: 45%;
+    margin-top: 9%;
+}
+ul{
+    color: white;
 }

@@ -1,6 +1,7 @@
 'use strict'
-var arrayOfProduct=[];//PUSH ALL CONTRACTOR INTO THIS ARRAY .
-//  console.log(arrayOfProduct);
+
+var arrayOfProduct=[];
+var trialsleft = 25;
 var leftImg = document.getElementById('leftImg');
 var middleImg = document.getElementById('middleImg');
 var rightImg = document.getElementById('rightImg');
@@ -10,8 +11,8 @@ var rightImgeText=document.getElementById('rightImgeText')
 var imgContainer= document.getElementById('imgContainer');
 var view=document.getElementById('viewRuslt');
 
-// console.log(leftImg);
-var trialsleft = 25;
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 
 function Product (imgName, images){
@@ -22,16 +23,6 @@ this.show=0;
 this.clickCount=0; 
 arrayOfProduct.push(this);
 
-}
-function getProduct(leftImage,middleImage,rightImage) {
-    // console.log(leftImage, middleImage, rightImage);
-    leftImg.setAttribute('src', arrayOfProduct[leftImage].path);
-    middleImg.setAttribute('src', arrayOfProduct[middleImage].path);
-    rightImg.setAttribute('src', arrayOfProduct[rightImage].path);
-  
-    leftImgText.textContent = arrayOfProduct[leftImage].name;
-    middleImgText.textContent = arrayOfProduct[middleImage].name;
-    rightImgeText.textContent = arrayOfProduct[rightImage].name;
 }
 
 
@@ -57,34 +48,15 @@ new Product('usb','usb.gif');
 new Product('water-can','water-can.jpg');
 new Product('wine-glass','wine-glass.jpg');
 
+///////////////////////////////////////////////////////////////////////////////////
 
-function randomImgs(){ //to chose randomly without samilize 
-    do {
-
-             var leftImage = Math.round(Math.random() * (arrayOfProduct.length - 1));
-             var middleImage = Math.round(Math.random() * (arrayOfProduct.length - 1));
-             var rightImage = Math.round(Math.random() * (arrayOfProduct.length - 1));
-
-    }
-
-
-        while(leftImage===middleImage || leftImage===rightImage || middleImage===rightImage)
-            
-       
-        getProduct(leftImage,middleImage,rightImage);
-
-}
-
-
-randomImgs();
 imgContainer.addEventListener('click',countItem);
 
-// console.log(imgContainer);
 
 
-//JUST FOR COUNT 
 
 function countItem(event){
+
     var targetId = event.target.id;
    
     if (trialsleft !== 0) { 
@@ -92,34 +64,67 @@ function countItem(event){
       if (targetId === 'leftImg' || targetId === 'middleImg' || targetId === 'rightImg') { 
         var objectIndicator = event.target.getAttribute('src');
         checkItem(objectIndicator);
-        // console.log(trialsleft); 
+        console.log(objectIndicator);
         randomImgs();
+
       }
   
     } else {
       imgContainer.removeEventListener('click',countItem);
     }
-    function showCount(){
-        var total=0
-        if(arrayOfProduct.path==arrayOfProduct.image){
-       total++;
-        }
-        console.log(total);
+    console.log(arrayOfProduct);
     
-    }
-
-    showCount();
-    viewRuslt();
-    function viewRuslt(){
-        document.getElementById("viewRuslt").innerHTML = "Number of clike is ="+" "+arrayOfProduct.clickCount;
-
     
-    }
-   
+     
+    
 }
 
-// console.log(Product.clickCount); 
 
+
+//////////////////////////////////////////////////////////////   
+//////////////////////////////////////////////////////////////   
+//////////////////////////////////////////////////////////////   
+
+//////////////////////////////////////////////////////////////   
+    
+function getProduct(leftImage,middleImage,rightImage) {
+    // console.log(leftImage, middleImage, rightImage);
+    leftImg.setAttribute('src', arrayOfProduct[leftImage].path);
+    middleImg.setAttribute('src', arrayOfProduct[middleImage].path);
+    rightImg.setAttribute('src', arrayOfProduct[rightImage].path);
+  
+    leftImgText.textContent = arrayOfProduct[leftImage].name;
+    middleImgText.textContent = arrayOfProduct[middleImage].name;
+    rightImgeText.textContent = arrayOfProduct[rightImage].name;
+
+    arrayOfProduct[leftImage].show++;
+    arrayOfProduct[rightImage].show++;
+    arrayOfProduct[middleImage] .show++;
+}
+
+
+////////////////////////////////////
+///////////////////////////////////
+
+
+    function randomImgs(){ //to chose randomly without samilize
+
+        do {
+    
+                 var leftImage = Math.round(Math.random() * (arrayOfProduct.length - 1));
+                 var middleImage = Math.round(Math.random() * (arrayOfProduct.length - 1));
+                 var rightImage = Math.round(Math.random() * (arrayOfProduct.length - 1));
+    
+        }
+    
+    
+            while(leftImage===middleImage || leftImage===rightImage || middleImage===rightImage)
+                
+           
+            getProduct(leftImage,middleImage,rightImage);
+    
+    }
+    
 
 function checkItem(objectIndicator) {
     for (var index = 0; index < arrayOfProduct.length; index++) {
@@ -127,7 +132,14 @@ function checkItem(objectIndicator) {
         arrayOfProduct[index].clickCount++;
         trialsleft--;
       }     
-    //   console.log(arrayOfProduct.clickCount);
+
     }
 }
+function viewRuslt(){
+    for(var i=0;i<arrayOfProduct.length;i++){
+        var myNewListItem = document.createElement('li');
+        myNewListItem.textContent = arrayOfProduct[i].name+" "+"had" +arrayOfProduct[i].clickCount+" votes, and was seen"+arrayOfProduct[i].show+" times.";
+        document.getElementById("viewRuslt").appendChild(myNewListItem);
 
+    }
+}      
