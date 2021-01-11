@@ -1,5 +1,5 @@
 body{
-    background-color: #131313;
+    background-color: #113311;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -47,4 +47,7 @@ footer{
 }
 ul{
     color: white;
+}
+canvas::before{
+    background-color: white;
 }
