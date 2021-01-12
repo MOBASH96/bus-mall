@@ -11,6 +11,8 @@ var rightImgeText=document.getElementById('rightImgeText')
 var imgContainer= document.getElementById('imgContainer');
 var view=document.getElementById('viewRuslt');
 var productChart=document.getElementById('productChart').getContext('2d');
+var clearDataBtn = document.getElementById('clearLocalStorage');
+
 var shownImages = []; 
 var  preventTwoic=[];
 ///////////////////////////////////////////////////////////////////////////////////
@@ -24,10 +26,29 @@ this.path= 'assets/'+images;
 this.show=0;
 this.clickCount=0; 
 arrayOfProduct.push(this);
-
+///////////////////////////////////////// nothing inside of it 
 }
 
 
+function productStorage(){
+  localStorage.setItem('product',JSON.stringify(arrayOfProduct));
+}
+
+function checkAndRestore() {
+    
+  if (localStorage.length > 0 ) { // check if the local storage has any values in it
+      arrayOfProduct = JSON.parse(localStorage.getItem('product')); // restore the data from the local storage
+      // renderChart();
+  }
+} 
+function clearLocalStorage(){
+
+  localStorage.clear();
+
+  arrayOfProduct = [];
+  alert("you remove the data, try another round ")
+  location.reload();
+}
 //CREAT AN OBJECT FOR EACH ITEM OF LIST 
 new Product('pag','bag.jpg');
 new Product('banana','banana.jpg');
@@ -66,7 +87,7 @@ function countItem(event){
       if (targetId === 'leftImg' || targetId === 'middleImg' || targetId === 'rightImg') { 
         var objectIndicator = event.target.getAttribute('src');
         checkItem(objectIndicator);
-        console.log(objectIndicator);
+        // console.log(objectIndicator);
         randomImgs();
 
       }
@@ -75,8 +96,10 @@ function countItem(event){
       imgContainer.removeEventListener('click',countItem);
       alert('Good job, the vote is over, now you can see the results ')
       renderChart();
+      
+      
     }
-    console.log(arrayOfProduct);
+    // console.log(arrayOfProduct);
       
     
 }
@@ -157,6 +180,8 @@ function checkItem(objectIndicator) {
       if (arrayOfProduct[index].path === objectIndicator) {
         arrayOfProduct[index].clickCount++;
         trialsleft--;
+        productStorage();
+
       }     
 
     }
@@ -327,3 +352,6 @@ function renderChart() {
         return false;  
       }
       
+      checkAndRestore(); 
+
+      clearDataBtn.addEventListener('click', clearLocalStorage);
