@@ -1,15 +1,57 @@
+/* /////////////////////////////////style the basic /////////// */
 body{
-    background-color: #113311;
+    background-color: #131313;
     width: 100%;
     padding: 0;
     margin: 0;
     border: 0;
 }
+/* /////////////////////////////////style the header /////////// */
 
+header{
+    background-color: #f1f1f1;
+    padding: 0px 5px;
+}
+.header{
+        background-color: #f1f1f1;
+        padding: 0px 5px;
+}
+.kidImg{
+    margin-top: -85px;
+    margin-left: 47%;
+}
+.logo{
+    font-size: 25px;
+  font-weight: bold;
+  margin-left: 2%;
+    margin-top: 0.5%;
+}
+.logoText{
+    color: rgb(19, 73, 9);
+    font-size: 30px;
+}
+
+.headerText{
+    margin-top: -7%;
+    margin-left: -40%;
+}
+/* /////////////////////////////////style the img /////////// */
+
+.gif{
+    margin-top: -11%;
+    margin-left: 32%;
+}
+
+.evryImg{
+    margin-top: 8%;
+}
 .imgContainer{
     display: block;
     text-align: justify;
-    margin-top: 4%;
+    margin-top: -12%;
+    padding: 11%;
+    margin-left: -2%;
+
 
 }
 .leftImg{
@@ -50,4 +92,20 @@ ul{
 }
 canvas::before{
     background-color: white;
+}
+.btnStyle{
+    margin-left: 33%;
+    margin-top: 0%;
+}
+button{
+    width: 200px;
+    height: 50px;
+    background-color:#51d2e9 ;
+}
+.clear{
+    margin-top: -50px;
+    margin-left: 28%;
+}
+button:hover{
+background-color: #0a944f;
 }
